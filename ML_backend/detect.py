@@ -184,7 +184,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
 
             #TO EDIT
             # if curr_state == "with_mask":
-            # 
+            #
             # elif curr_state == "without_mask":
             #
             # LOGGER.info(curr_state)
