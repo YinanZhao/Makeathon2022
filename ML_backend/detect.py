@@ -28,6 +28,7 @@ import argparse
 import os
 import sys
 from pathlib import Path
+import re
 
 import cv2
 import torch
@@ -45,6 +46,12 @@ from utils.general import (LOGGER, check_file, check_img_size, check_imshow, che
                            increment_path, non_max_suppression, print_args, scale_coords, strip_optimizer, xyxy2xywh)
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, time_sync
+
+#import raspberry Pi code
+sys.path.append("../../../../../../../CIRCUITPY")
+from code import *
+
+
 
 
 @torch.no_grad()
@@ -180,14 +187,12 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             # Print time (inference-only)
             # LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
             curr_state = s[13:].split(',')[0]
+            f = open("states.txt", "r+")
+            f.truncate(0)
+            f.write(curr_state)
+            f.close()
 
-
-            #TO EDIT
-            # if curr_state == "with_mask":
-            #
-            # elif curr_state == "without_mask":
-            #
-            # LOGGER.info(curr_state)
+            LOGGER.info(curr_state)
 
 
 
