@@ -1,0 +1,5 @@
+train: /root/../content/drive/MyDrive/McHacks/train/images
+val: /root/../content/drive/MyDrive/McHacks/val/images
+
+nc: 2
+names: ['bad', 'good']
