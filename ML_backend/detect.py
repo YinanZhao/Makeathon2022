@@ -1,4 +1,4 @@
-# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+# YOLOv5  by Ultralytics, GPL-3.0 license
 """
 Run inference on images, videos, directories, streams, etc.
 
@@ -187,7 +187,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
             # Print time (inference-only)
             # LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
             curr_state = s[13:].split(',')[0]
-            f = open("states.txt", "r+")
+            f = open("/Users/main/Downloads/mask.txt", "r+")
             f.truncate(0)
             f.write(curr_state)
             f.close()
