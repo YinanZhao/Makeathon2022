@@ -122,7 +122,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                 while f != b'1\r\n':
                     ser.write(b'fill\r')
                     f = ser.readline() #TO CHANGE
-                    
+
             t1 = time_sync()
             im = torch.from_numpy(im).to(device)
             im = im.half() if half else im.float()  # uint8 to fp16/32
@@ -192,10 +192,10 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                 curr_state = s[13:].split(',')[0] + "\r"
                 woohoo = bytes(curr_state, "utf8")
                 with serial.Serial('/dev/cu.usbmodem14101', 115200, timeout=1) as ser:
-                    
+
                     ser.write(bytes(curr_state, "utf8"))
 
-                
+
 
                 LOGGER.info(curr_state)
 
