@@ -117,11 +117,11 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         dt, seen = [0.0, 0.0, 0.0], 0
         for path, im, im0s, vid_cap, s in dataset:
 
-            f = open("/Users/yinanzhao/Documents/GitHub/Makeathon2022/ML_backend/ml.txt", "r") #TO CHANGE
+            f = open("/Volumes/CIRCUITPY/ml.txt", "r") #TO CHANGE
             doRun = f.read()
             f.close()
             while doRun != "ON":
-                f = open("/Users/yinanzhao/Documents/GitHub/Makeathon2022/ML_backend/ml.txt", "r") #TO CHANGE
+                f = open("/Volumes/CIRCUITPY/ml.txt", "r") #TO CHANGE
                 doRun = f.read()
                 print(doRun)
                 f.close()
@@ -192,7 +192,7 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
                 # Print time (inference-only)
                 # LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
                 curr_state = s[13:].split(',')[0]
-                f = open("/Users/yinanzhao/Documents/GitHub/Makeathon2022/ML_backend/states.txt", "r+")
+                f = open("/Volumes/CIRCUITPY/states.txt", "r+")
                 f.truncate(0)
                 f.write(curr_state)
                 f.close()
