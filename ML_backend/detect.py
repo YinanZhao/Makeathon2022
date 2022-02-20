@@ -117,12 +117,12 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
         dt, seen = [0.0, 0.0, 0.0], 0
         for path, im, im0s, vid_cap, s in dataset:
 
-            with serial.Serial('/dev/cu.usbmodem14301', 115200, timeout=1) as ser:
+            with serial.Serial('/dev/cu.usbmodem14101', 115200, timeout=1) as ser:
                 f = ser.readline()#TO CHANGE
-                while f != "b'1'":
+                while f != b'1\r\n':
+                    ser.write(b'fill\r')
                     f = ser.readline() #TO CHANGE
-                    print(f)
-                    
+
             t1 = time_sync()
             im = torch.from_numpy(im).to(device)
             im = im.half() if half else im.float()  # uint8 to fp16/32
@@ -189,10 +189,13 @@ def run(weights=ROOT / 'yolov5s.pt',  # model.pt path(s)
 
                 # Print time (inference-only)
                 # LOGGER.info(f'{s}Done. ({t3 - t2:.3f}s)')
-                curr_state = s[13:].split(',')[0]
-                woohoo = bytes(curr_state + "\r", "utf8")
-                ser.write(woohoo)
-                
+                curr_state = s[13:].split(',')[0] + "\r"
+                woohoo = bytes(curr_state, "utf8")
+                with serial.Serial('/dev/cu.usbmodem14101', 115200, timeout=1) as ser:
+
+                    ser.write(bytes(curr_state, "utf8"))
+
+
 
                 LOGGER.info(curr_state)
 
